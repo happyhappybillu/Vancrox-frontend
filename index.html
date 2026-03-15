@@ -2,41 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
+  <link rel="icon" href=" ./assets/favicon.svg"/>
+  <link rel="icon" type="image/png" href="./assets/logo.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VANCROX — Professional Trading Platform</title>
-
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
-  <!-- Premium Background -->
   <div class="bg-orbs"></div>
   <div class="bg-grid"></div>
-  <div id="particles"></div>
+  <canvas id="particles"></canvas>
 
   <!-- NAVBAR -->
   <header class="nav">
     <div class="nav-left">
       <div class="brand">
-        <img src="assets/logo.png" class="brand-logo" alt="VANCROX Logo">
+        <img src=" ./assets/logo.png" class="brand-logo" alt="VANCROX Logo">
         <span class="brand-name">VANCROX</span>
       </div>
     </div>
-
     <nav class="nav-links">
       <a href="#how-it-works">How It Works</a>
       <a href="#markets">Markets</a>
       <a href="#security">Security</a>
     </nav>
-
     <div class="nav-actions">
       <a class="btn btn-ghost" href="login.html">Login</a>
       <a class="btn btn-primary" href="register.html">Create Account</a>
@@ -47,15 +40,15 @@
   <main class="hero-wrap">
     <section class="hero">
 
-      <!-- Left -->
+      <!-- LEFT -->
       <div class="hero-left reveal">
         <div class="hero-pill">
           <span class="dot"></span>
-          REAL MARKET EXPERIENCE.INSTITUTIONAL-GRADE LOGIC.ABSOLUTE TRANSPARENCY.
+          REAL MARKET EXPERIENCE · INSTITUTIONAL-GRADE LOGIC · ABSOLUTE TRANSPARENCY
         </div>
 
         <h1 class="hero-title">
-          A Professional Trading Platform <br/>
+          A Professional Trading Platform<br/>
           Built on Trust
         </h1>
 
@@ -73,15 +66,11 @@
             <span class="badge-title">100% Capital Refund Guarantee</span>
             <span class="badge-sub">If the trader makes a loss</span>
           </div>
-
-          <p class="hero-mini">
-            “Live charts, real-time updates, and a transparent trading view — all in one place.”
-          </p>
-
+          <p class="hero-mini">"Live charts, real-time updates, and a transparent trading view — all in one place."</p>
           <div class="hero-mini-tags">
-            <span class="mini-tag">Instant Refund Flow</span>
-            <span class="mini-tag">Realtime Status</span>
-            <span class="mini-tag">Verified System</span>
+            <span class="mini-tag">⚡ Instant Refund Flow</span>
+            <span class="mini-tag">📡 Realtime Status</span>
+            <span class="mini-tag">✅ Verified System</span>
           </div>
         </div>
 
@@ -100,24 +89,59 @@
         </div>
       </div>
 
-      <!-- Right -->
+      <!-- RIGHT — SLIDER -->
       <div class="hero-right reveal">
         <div class="glass-card tilt">
+
+          <!-- SLIDE HEADER -->
           <div class="glass-head">
-            <span class="mini-title">Realtime Market Preview</span>
+            <span class="mini-title" id="slideTitle">Realtime Market Preview</span>
             <span class="mini-status">LIVE</span>
           </div>
 
-          <div class="chart-preview">
-            <div class="chart-row">
-              <span>BTCUSD</span>
-              <span class="up">▲ 1.24%</span>
-            </div>
-            <div class="chart-row">
-              <span>XAUUSD</span>
-              <span class="down">▼ 0.41%</span>
+          <!-- SLIDER WRAPPER -->
+          <div class="slider-wrap">
+
+            <!-- SLIDE 1 — AI -->
+            <div class="slide slide-ai active" id="slide1">
+              <div class="slide-img-wrap">
+                <img src=" ./assets/hero-ai.png" class="slide-img" alt="AI Trading"/>
+                <div class="slide-overlay-badge">+2.75%</div>
+              </div>
+              <!-- Floating chips AI -->
+              <div class="slide-chip sc1">⚡ Quantum Trading Logic</div>
+              <div class="slide-chip sc2">🧠 AI Market Analysis</div>
+              <div class="slide-chip sc3">📡 Neural Signal Engine</div>
+              <div class="slide-chip sc4">🔮 Smart Execution</div>
             </div>
 
+            <!-- SLIDE 2 — HUMAN -->
+            <div class="slide slide-human" id="slide2">
+              <div class="slide-img-wrap">
+                <img src=" ./assets/hero-trader.png" class="slide-img" alt="Expert Trader"/>
+                <div class="slide-overlay-badge">+3.12%</div>
+              </div>
+              <!-- Floating chips Human -->
+              <div class="slide-chip sc1">🏆 Experienced Trader</div>
+              <div class="slide-chip sc2">💎 Elite Verified Specialist</div>
+              <div class="slide-chip sc3">🎯 Precision Market Entry</div>
+              <div class="slide-chip sc4">📊 Institutional Strategy</div>
+            </div>
+
+          </div><!-- /slider-wrap -->
+
+          <!-- BLUE NEON BAR CHART (premium animated) -->
+          <div class="neon-chart-wrap">
+            <div class="chart-tickers">
+              <div class="chart-row">
+                <span class="ticker-name">BTCUSD</span>
+                <span class="up">▲ 1.24%</span>
+              </div>
+              <div class="chart-row">
+                <span class="ticker-name">XAUUSD</span>
+                <span class="down">▼ 0.41%</span>
+              </div>
+            </div>
             <div class="fake-chart">
               <div class="bar b1"></div>
               <div class="bar b2"></div>
@@ -127,20 +151,26 @@
               <div class="bar b6"></div>
               <div class="bar b7"></div>
               <div class="bar b8"></div>
-            </div>
-
-            <div class="glass-info">
-              <div class="info-pill">Real-time Signals</div>
-              <div class="info-pill">Live Chart View</div>
-              <div class="info-pill">Transparent Execution</div>
+              <div class="bar b9"></div>
+              <div class="bar b10"></div>
             </div>
           </div>
-        </div>
 
+          <!-- INFO PILLS -->
+          <div class="glass-info">
+            <div class="info-pill">📶 Real-time Signals</div>
+            <div class="info-pill">📈 Live Chart View</div>
+            <div class="info-pill">🔍 Transparent Execution</div>
+          </div>
+
+        </div><!-- /glass-card -->
+
+        <!-- OUTER FLOATING CHIPS -->
         <div class="floating-chip chip1">⚡ Fast Settlement</div>
         <div class="floating-chip chip2">🔁 Instant Refund Flow</div>
         <div class="floating-chip chip3">📈 Live Chart View</div>
-      </div>
+
+      </div><!-- /hero-right -->
 
     </section>
   </main>
@@ -151,24 +181,37 @@
       <h2>Professional Trading Across Major Markets</h2>
       <p>All trades are handled by professional traders with real market experience.</p>
     </div>
-
-    <div class="grid-3">
+    <div class="grid-4">
       <div class="feature-card reveal tilt-mini">
         <div class="icon">🪙</div>
         <h3>Crypto Trading</h3>
         <p>BTC, ETH & leading market pairs with live movement tracking.</p>
       </div>
-
       <div class="feature-card reveal tilt-mini">
         <div class="icon">💹</div>
         <h3>Forex Trading</h3>
         <p>Major currency pairs with system-based execution and live updates.</p>
       </div>
-
       <div class="feature-card reveal tilt-mini">
         <div class="icon">📊</div>
         <h3>Futures & Options</h3>
         <p>Premium strategies with transparent process and fast settlement.</p>
+      </div>
+      <!-- NEW AI CARD -->
+      <div class="feature-card feature-card-ai reveal tilt-mini">
+        <div class="ai-card-glow"></div>
+        <div class="icon ai-icon">🤖</div>
+        <h3>AI-Powered Trading</h3>
+        <p>
+          Next-generation algorithmic intelligence analyzes live market signals,
+          executes with precision and adapts in real-time — powered by Quantum Neural Logic
+          built for institutional-grade performance.
+        </p>
+        <div class="ai-tags">
+          <span class="ai-tag">⚡ Quantum Logic</span>
+          <span class="ai-tag">🧠 Neural Engine</span>
+          <span class="ai-tag">🔮 Predictive AI</span>
+        </div>
       </div>
     </div>
   </section>
@@ -177,40 +220,28 @@
   <section class="how-it-works" id="how-it-works">
     <div class="section-head reveal">
       <h2>How It Works</h2>
-      <p>A Premium ecosystem for secure & smart capital growth.</p>
+      <p>A Premium ecosystem for secure &amp; smart capital growth.</p>
     </div>
-
     <div class="hiw-grid">
       <div class="hiw-card reveal tilt-mini">
         <div class="hiw-icon">📝</div>
         <h3>Join VANCROX</h3>
-        <p>
-         Where smart capital meets professional trading execution.
-        </p>
+        <p>Where smart capital meets professional trading execution.</p>
       </div>
-
       <div class="hiw-card reveal tilt-mini">
         <div class="hiw-icon">💳</div>
         <h3>Intelligent Asset Gateway</h3>
-        <p>
-          Multi-network funding powered by smart encryption and elite grade security.
-        </p>
+        <p>Multi-network funding powered by smart encryption and elite grade security.</p>
       </div>
-
       <div class="hiw-card reveal tilt-mini">
         <div class="hiw-icon">👤</div>
         <h3>Hire Your Elite Trader</h3>
-        <p>
-          Choose your Elite Pro Trader & start earning.
-        </p>
+        <p>Choose your Elite Pro Trader &amp; start earning.</p>
       </div>
-
       <div class="hiw-card reveal tilt-mini">
         <div class="hiw-icon">⚡</div>
         <h3>Instant Settlements</h3>
-        <p>
-         Fast & secure settlement.
-        </p>
+        <p>Fast &amp; secure settlement with 100% refund guarantee on losses.</p>
       </div>
     </div>
   </section>
@@ -218,27 +249,24 @@
   <!-- SECURITY -->
   <section class="section" id="security">
     <div class="section-head reveal">
-      <h2>Transparent & Secure System</h2>
-      <p>Safe and trustworthy.</p>
+      <h2>Transparent &amp; Secure System</h2>
+      <p>Safe, trustworthy and always transparent.</p>
     </div>
-
     <div class="grid-3">
       <div class="feature-card reveal tilt-mini">
         <div class="icon">🔒</div>
-        <h3>Ironclad security</h3>
-        <p>Advanced encryption and privacy.</p>
+        <h3>Ironclad Security</h3>
+        <p>Advanced encryption and end-to-end privacy protection.</p>
       </div>
-
       <div class="feature-card reveal tilt-mini">
         <div class="icon">📜</div>
         <h3>Clear Process</h3>
-        <p>No confusion — simple and easy.</p>
+        <p>No confusion — simple, clean and easy to understand.</p>
       </div>
-
       <div class="feature-card reveal tilt-mini">
         <div class="icon">🧑‍💻</div>
         <h3>24×7 Support</h3>
-        <p>Because the market never sleeps,and neither do we.</p>
+        <p>Because the market never sleeps, and neither do we.</p>
       </div>
     </div>
   </section>
@@ -251,12 +279,9 @@
           <img src="assets/logo.png" class="brand-logo small" alt="VANCROX Logo">
           <span class="brand-name">VANCROX</span>
         </div>
-        <p class="footer-muted">
-          The ultimate ecosystem connecting global capital with Elite Trading expertise.
-        </p>
+        <p class="footer-muted">The ultimate ecosystem connecting global capital with Elite Trading expertise.</p>
         <p class="footer-muted2">© <span id="year">2026</span> Vancrox. All rights reserved.</p>
       </div>
-
       <div class="footer-right">
         <div class="footer-icons">
           <span>🔒 SSL Secure</span>
@@ -268,52 +293,6 @@
     </div>
   </footer>
 
-  <!-- Particles -->
-  <script>
-    document.getElementById("year").innerText = new Date().getFullYear();
-
-    // particles
-    const particles = document.getElementById('particles');
-    const total = 80;
-    for (let i = 0; i < total; i++) {
-      const p = document.createElement('span');
-      p.className = 'particle';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.top = Math.random() * 100 + '%';
-      p.style.animationDelay = (Math.random() * 8) + 's';
-      p.style.animationDuration = (6 + Math.random() * 10) + 's';
-      particles.appendChild(p);
-    }
-
-    // reveal
-    const revealEls = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach((e)=>{
-        if(e.isIntersecting){
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    },{threshold:0.12});
-    revealEls.forEach(el=>io.observe(el));
-
-    // tilt
-    function tilt(el, strength=10){
-      el.addEventListener("mousemove",(e)=>{
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - r.left;
-        const y = e.clientY - r.top;
-        const rx = ((y / r.height) - 0.5) * -strength;
-        const ry = ((x / r.width) - 0.5) * strength;
-        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-      });
-      el.addEventListener("mouseleave",()=>{
-        el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-      });
-    }
-    document.querySelectorAll(".tilt").forEach(el=>tilt(el, 11));
-    document.querySelectorAll(".tilt-mini").forEach(el=>tilt(el, 7));
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>

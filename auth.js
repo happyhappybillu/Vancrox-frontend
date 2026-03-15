@@ -3,7 +3,7 @@
 =========================== */
 
 /* 🌍 GLOBAL API BASE (NO CONFLICT) */
-window.API_BASE = "https://vancrox-backend.onrender.com";
+window.API_BASE = "https://vancrox.tech";
 
 /* ---------- Helpers ---------- */
 function $(id) {
