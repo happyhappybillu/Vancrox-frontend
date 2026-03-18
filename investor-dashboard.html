@@ -1022,10 +1022,10 @@ function renderTraders(){
       </div>
       <div class="tc-pct-col">
         <div class="tc-pct">${ad.returnPct}<sup>%</sup></div>
-        <div class="tc-limit">${fmtAmt(t.securityMoney)} amount</div>
+        <div class="tc-limit">${fmtAmt(ad.tradeAmount)} limit</div>
       </div>
       <div class="tc-hire-col">
-        <button class="btn-hire" onclick="openHire('${t._id}','${ad._id}','${xe(t.name)}',${t.securityMoney})">Hire</button>
+        <button class="btn-hire" onclick="openHire('${t._id}','${ad._id}','${xe(t.name)}',${ad.tradeAmount})">Hire</button>
         <div class="tc-fee">(1USDT fee)</div>
       </div>
     </div>`).join("");
@@ -1055,7 +1055,7 @@ function renderMyTrades(){
   if(!TRADES.length){el.innerHTML=`<div class="empty"><div class="empty-ic">👥</div><div class="empty-tx">No Active Trades</div><div class="empty-tx2">Go to Home and hire a trader</div></div>`;return;}
   const SM={
     WAITING_CONFIRMATION:{cls:"status-wait",lbl:"⏳ Waiting Confirmation",pill:"p-wait",timer:true},
-    ONGOING:{cls:"status-live",lbl:"🟢 Trade Ongoing",pill:"p-live",timer:false},
+    ONGOING:{cls:"status-live",lbl:"🟢 Trade Ongoing",pill:"p-live",timer:false,note:"Markets can be sideways — your trader is monitoring."},
     REJECTED:{cls:"status-rej",lbl:"❌ Rejected — Refunded",pill:"p-rej",timer:false},
     AUTO_REJECTED:{cls:"status-rej",lbl:"⏰ Auto-Rejected — Refunded",pill:"p-rej",timer:false},
     COMPLETED:{cls:"status-done",lbl:"✅ Completed",pill:"p-done",timer:false},
@@ -1069,9 +1069,12 @@ function renderMyTrades(){
         <div class="tr-meta"><div class="tr-name">${xe(t.traderName||"Trader")}</div><div class="tr-tid">${t.traderId?"TID"+t.traderId:""}</div></div>
         <div class="tr-amtcol"><div class="tr-amt">${fmtAmt(t.amount)}</div><div class="tr-ret">+${t.returnPct}% expected</div></div>
       </div>
-      <div class="tr-foot">
-        <span class="status-pill ${s.pill}">${s.lbl}</span>
-        ${s.timer&&tl?`<span class="cdown" id="cd-${t._id}">${tl}</span>`:""}
+      <div class="tr-foot" style="flex-direction:column;align-items:flex-start;gap:6px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+          <span class="status-pill ${s.pill}">${s.lbl}</span>
+          ${s.timer&&tl?`<span class="cdown" id="cd-${t._id}">${tl}</span>`:""}
+        </div>
+        ${s.note?`<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);padding:4px 2px;">${s.note}</div>`:""}
       </div>
     </div>`;
   }).join("");
