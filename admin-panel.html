@@ -707,7 +707,7 @@ let curReport="deposits";
 })();
 
 function getAuth(){ try{return JSON.parse(localStorage.getItem("vancrox_auth"));}catch{return null;} }
-function goLogin(){ localStorage.removeItem("vancrox_auth"); location.href="./admin-login.html"; }
+function goLogin(){ localStorage.removeItem("vancrox_auth"); location.href="/admin-login"; }
 function doLogout(){ goLogin(); }
 
 async function api(path, method="GET", body=null){

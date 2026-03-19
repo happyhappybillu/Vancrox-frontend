@@ -768,8 +768,8 @@ let pendingOutcome=null, profImg="";
   AUTH = getAuth();
   if(!AUTH?.token){ goLogin(); return; }
   if(AUTH.role && AUTH.role!=="trader"){
-    if(AUTH.role==="investor") location.href="./investor-dashboard.html";
-    else location.href="./admin-panel.html";
+    if(AUTH.role==="investor") location.href="/investor";
+    else location.href="/admin";
     return;
   }
   initParticles(); setupNav();
@@ -777,7 +777,7 @@ let pendingOutcome=null, profImg="";
 })();
 
 function getAuth(){ try{return JSON.parse(localStorage.getItem("vancrox_auth"));}catch{return null;} }
-function goLogin(){ localStorage.removeItem("vancrox_auth"); location.href="./login.html"; }
+function goLogin(){ localStorage.removeItem("vancrox_auth"); location.href="/login"; }
 function doLogout(){ goLogin(); }
 
 async function apiFetch(path, method="GET", body=null){

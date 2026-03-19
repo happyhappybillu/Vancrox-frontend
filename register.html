@@ -22,8 +22,8 @@
     </div>
 
     <div class="nav-actions">
-      <a class="btn btn-ghost" href="./index.html">Home</a>
-      <a class="btn btn-primary" href="./login.html">Login</a>
+      <a class="btn btn-ghost" href="/">Home</a>
+      <a class="btn btn-primary" href="/login">Login</a>
     </div>
   </header>
 
@@ -37,6 +37,11 @@
         <div id="msg" class="msg"></div>
 
         <!-- ✅ SAME ID auth.js EXPECTS -->
+        <!-- Refer banner — shown if ref param in URL -->
+        <div id="refBanner" style="display:none;background:rgba(0,140,255,.10);border:1px solid rgba(0,140,255,.28);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;font-weight:800;color:rgba(255,255,255,.85);text-align:center;">
+          🎁 You were referred by a friend — register to get started!
+        </div>
+
         <form id="registerForm" class="form">
 
           <div class="field">
@@ -69,7 +74,7 @@
 
           <div class="row">
             <button class="btn btn-primary" type="submit">Register</button>
-            <a class="btn btn-ghost" href="./login.html">Login</a>
+            <a class="btn btn-ghost" href="/login">Login</a>
           </div>
 
           <div class="small-links">
@@ -85,5 +90,11 @@
   <!-- ✅ ONLY ONE JS FILE -->
   <script src="./auth.js"></script>
 
+<script>
+  (function(){
+    var ref = new URLSearchParams(window.location.search).get("ref");
+    if(ref){ document.getElementById("refBanner").style.display="block"; }
+  })();
+</script>
 </body>
 </html>

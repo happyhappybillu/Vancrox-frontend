@@ -31,18 +31,18 @@ function getAuth() {
 
 function logout() {
   localStorage.removeItem("vancrox_auth");
-  window.location.href = "./login.html";
+  window.location.href = "/login";
 }
 
 function redirectDashboard(role) {
   if (role === "investor") {
-    window.location.href = "./investor-dashboard.html";
+    window.location.href = "/investor";
   } else if (role === "trader") {
-    window.location.href = "./trader-dashboard.html";
+    window.location.href = "/trader";
   } else if (role === "admin") {
-    window.location.href = "./admin-panel.html";
+    window.location.href = "/admin";
   } else {
-    window.location.href = "./login.html";
+    window.location.href = "/login";
   }
 }
 
@@ -103,7 +103,7 @@ async function requireAuth(role) {
   const auth = getAuth();
 
   if (!auth?.token || !auth?.role) {
-    window.location.href = "./login.html";
+    window.location.href = "/login";
     return;
   }
 
