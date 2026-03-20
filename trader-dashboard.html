@@ -394,6 +394,34 @@ a{text-decoration:none;color:inherit;}
 
 .sep{height:1px;background:rgba(255,255,255,.07);margin:16px 0;}
 
+/* ── AUTO ACCEPT ── */
+.auto-accept-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(0,0,0,.35);border:1px solid rgba(0,170,255,.18);
+  border-radius:16px;padding:16px 18px;margin-bottom:16px;
+}
+.aa-left{}
+.aa-title{font-size:16px;font-weight:900;color:#fff;margin-bottom:3px;}
+.aa-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.45);}
+.aa-switch{position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0;}
+.aa-switch input{opacity:0;width:0;height:0;}
+.aa-slider{
+  position:absolute;inset:0;cursor:pointer;
+  background:rgba(255,255,255,.12);border-radius:28px;
+  transition:.3s;border:1px solid rgba(255,255,255,.12);
+}
+.aa-slider:before{
+  content:"";position:absolute;
+  height:20px;width:20px;left:3px;bottom:3px;
+  background:#fff;border-radius:50%;transition:.3s;
+}
+.aa-switch input:checked + .aa-slider{
+  background:linear-gradient(135deg,#00aaff,#2f66ff);
+  border-color:rgba(0,170,255,.5);
+  box-shadow:0 0 14px rgba(0,170,255,.4);
+}
+.aa-switch input:checked + .aa-slider:before{transform:translateX(24px);}
+
 /* Network selector */
 .net-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
 
@@ -603,6 +631,19 @@ a{text-decoration:none;color:inherit;}
     <div class="inv-wrap">
       <div class="section-hd">Trade Requests</div>
       <div class="section-sub">Accept or reject incoming hire requests within 5 minutes.</div>
+
+      <!-- AUTO ACCEPT TOGGLE -->
+      <div class="auto-accept-bar">
+        <div class="aa-left">
+          <div class="aa-title">⚡ Auto Accept</div>
+          <div class="aa-sub">Automatically accept all incoming trade requests</div>
+        </div>
+        <label class="aa-switch">
+          <input type="checkbox" id="autoAcceptToggle" onchange="toggleAutoAccept(this.checked)"/>
+          <span class="aa-slider"></span>
+        </label>
+      </div>
+
       <div id="tradesList">
         <div class="loader"><div class="spin"></div><div class="spin-lbl">Loading…</div></div>
       </div>
@@ -827,6 +868,7 @@ function checkVerificationGate(){
     renderOverview();
     loadAds();
     loadTrades();
+    initAutoAccept();
     loadEarnings();
     tickTrades();
   } else {
@@ -1201,6 +1243,8 @@ async function loadTrades(){
   renderTrades();
   document.getElementById("ovActiveTrades").textContent =
     TRADES.filter(t=>t.status==="ONGOING").length;
+  // Run auto accept if enabled
+  await runAutoAccept();
 }
 
 function renderTrades(){
@@ -1286,6 +1330,43 @@ function timeLeft(ht){
   if(diff<=0) return "00:00";
   const m=Math.floor(diff/60000),s=Math.floor((diff%60000)/1000);
   return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+}
+
+/* ── AUTO ACCEPT ── */
+var AUTO_ACCEPT = false;
+
+function toggleAutoAccept(val) {
+  AUTO_ACCEPT = val;
+  localStorage.setItem("vancrox_aa", val ? "1" : "0");
+  toast(val ? "⚡ Auto Accept ON — requests will be accepted automatically" : "Auto Accept OFF");
+}
+
+function initAutoAccept() {
+  var saved = localStorage.getItem("vancrox_aa");
+  if (saved === "1") {
+    AUTO_ACCEPT = true;
+    var el = document.getElementById("autoAcceptToggle");
+    if (el) el.checked = true;
+  }
+}
+
+async function runAutoAccept() {
+  if (!AUTO_ACCEPT) return;
+  var pending = TRADES.filter(function(t) {
+    return t.status === "WAITING_TRADER_CONFIRMATION";
+  });
+  for (var i = 0; i < pending.length; i++) {
+    var t = pending[i];
+    var elapsed = Date.now() - new Date(t.hireTime).getTime();
+    if (elapsed < 4.5 * 60 * 1000) { // within 4.5 min window
+      console.log("Auto accepting trade:", t._id);
+      var r = await apiFetch("/api/trader/trades/" + t._id + "/accept", "POST", {});
+      if (r.ok) {
+        toast("⚡ Auto accepted trade from investor");
+        await loadTrades();
+      }
+    }
+  }
 }
 
 function tickTrades(){
